@@ -27,9 +27,11 @@ maze = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
  
 
 Function output:
+
 -Matrix maze map. This matrix is exactly the same as the input matrix but containing the solution path from the start point
 to the final target.
 It has represented the solution path with '5'.
+
 -Solution path vector. It contains all the solution positions from start to final, giving its row-column position.
  
  
