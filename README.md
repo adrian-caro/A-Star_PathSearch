@@ -4,6 +4,7 @@ The code uses an A* algorithm in order to solve an input maze, searching its sol
 
 This search algorithm perform a complete, admissible and optimal search of a target.
 The A* in this code, writed in MATLAB, is implemented as a function.
+Note: The heuristic function used is just the euclidean distance to the target, knowed its position.
 
 Function input: Square Matrix, that represents a maze, being '1' walls, '0' free positions, '3' start point, '9' target point.
 
