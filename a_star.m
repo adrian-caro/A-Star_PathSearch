@@ -305,160 +305,160 @@ while isempty(vivos.x)~= 1
         
     end
     
-    
-    %diagonal inferior derecha + +
-    
-    if vivos.x(q)+1<=size(mapa,1) && vivos.y(q)+1<=size(mapa,2) && mapa(vivos.x(q)+1,vivos.y(q)+1)~=1 %se comprueba que el hijo no sea una pared
-        
-        %busca si este sucesor est� en la lista de muertos ya.
-        estaenmuertos=0;
-        for i=1:length(muertos.x)
-            if muertos.x(i)==vivos.x(q)+1 && muertos.y(i)==vivos.y(q)+1
-                estaenmuertos=1;
-                break
-            end
-        end
-        
-        
-        if estaenmuertos==0 %%se comprueba que no est� en muertos.
-            estaenvivos=0;
-            for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
-                if vivos.x(j)==vivos.x(q)+1 && vivos.y(j)==vivos.y(q)+1
-                    estaenvivos=1;
-                    if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
-                        vivos.c(j)=vivos.c(q)+2;
-                    end
-                    break
-                end
-                
-            end
-            if estaenvivos==0 %Si no est� en vivos, se mete en vivos
-                numvivos=length(vivos.x)+1;
-                vivos.x(numvivos)=vivos.x(q)+1;
-                vivos.y(numvivos)=vivos.y(q)+1;
-                vivos.c(numvivos)=vivos.c(q)+2;
-                vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
-                vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
-                vivos.p(numvivos)=indicepadrerecienmuerto;
-            end
-        end
-        
-    end
-    %diagonal inferior izquierda + -
-    if vivos.x(q)+1<=size(mapa,1) && vivos.y(q)-1>0 && mapa(vivos.x(q)+1,vivos.y(q)-1)~=1 %se comprueba que el hijo no sea una pared
-        
-        %busca si este sucesor est� en la lista de muertos ya.
-        estaenmuertos=0;
-        for i=1:length(muertos.x)
-            if muertos.x(i)==vivos.x(q)+1 && muertos.y(i)==vivos.y(q)-1
-                estaenmuertos=1;
-                break
-            end
-        end
-        
-        
-        if estaenmuertos==0 %%se comprueba que no est� en muertos.
-            estaenvivos=0;
-            for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
-                if vivos.x(j)==vivos.x(q)+1 && vivos.y(j)==vivos.y(q)-1
-                    estaenvivos=1;
-                    if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
-                        vivos.c(j)=vivos.c(q)+2;
-                    end
-                    break
-                end
-                
-            end
-            if estaenvivos==0 %Si no est� en vivos, se mete en vivos
-                numvivos=length(vivos.x)+1;
-                vivos.x(numvivos)=vivos.x(q)+1;
-                vivos.y(numvivos)=vivos.y(q)-1;
-                vivos.c(numvivos)=vivos.c(q)+2;
-                vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
-                vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
-                vivos.p(numvivos)=indicepadrerecienmuerto;
-            end
-        end
-        
-    end
-    
-    %diagonal superior derecha - +
-    
-    if vivos.y(q)+1<=size(mapa,2) && vivos.x(q)-1>0 && mapa(vivos.x(q)-1,vivos.y(q)+1)~=1 %se comprueba que el hijo no sea una pared
-        
-        %busca si este sucesor est� en la lista de muertos ya.
-        estaenmuertos=0;
-        for i=1:length(muertos.x)
-            if muertos.x(i)==vivos.x(q)-1 && muertos.y(i)==vivos.y(q)+1
-                estaenmuertos=1;
-                break
-            end
-        end
-        
-        
-        if estaenmuertos==0 %%se comprueba que no est� en muertos.
-            estaenvivos=0;
-            for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
-                if vivos.x(j)==vivos.x(q)-1 && vivos.y(j)==vivos.y(q)+1
-                    estaenvivos=1;
-                    if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
-                        vivos.c(j)=vivos.c(q)+2;
-                    end
-                    break
-                end
-                
-            end
-            if estaenvivos==0 %Si no est� en vivos, se mete en vivos
-                numvivos=length(vivos.x)+1;
-                vivos.x(numvivos)=vivos.x(q)-1;
-                vivos.y(numvivos)=vivos.y(q)+1;
-                vivos.c(numvivos)=vivos.c(q)+2;
-                vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
-                vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
-                vivos.p(numvivos)=indicepadrerecienmuerto;
-            end
-        end
-        
-    end
-    
-    %diagonal superior izquierda - -
-    
-    if vivos.x(q)-1>0 && vivos.y(q)-1>0 && mapa(vivos.x(q)-1,vivos.y(q)-1)~=1 %se comprueba que el hijo no sea una pared
-        
-        %busca si este sucesor est� en la lista de muertos ya.
-        estaenmuertos=0;
-        for i=1:length(muertos.x)
-            if muertos.x(i)==vivos.x(q)-1 && muertos.y(i)==vivos.y(q)-1
-                estaenmuertos=1;
-                break
-            end
-        end
-        
-        
-        if estaenmuertos==0 %%se comprueba que no est� en muertos.
-            estaenvivos=0;
-            for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
-                if vivos.x(j)==vivos.x(q)-1 && vivos.y(j)==vivos.y(q)-1
-                    estaenvivos=1;
-                    if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
-                        vivos.c(j)=vivos.c(q)+2;
-                    end
-                    break
-                end
-                
-            end
-            if estaenvivos==0 %Si no est� en vivos, se mete en vivos
-                numvivos=length(vivos.x)+1;
-                vivos.x(numvivos)=vivos.x(q)-1;
-                vivos.y(numvivos)=vivos.y(q)-1;
-                vivos.c(numvivos)=vivos.c(q)+2;
-                vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
-                vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
-                vivos.p(numvivos)=indicepadrerecienmuerto;
-            end
-        end
-        
-    end
+%     
+%     %diagonal inferior derecha + +
+%     
+%     if vivos.x(q)+1<=size(mapa,1) && vivos.y(q)+1<=size(mapa,2) && mapa(vivos.x(q)+1,vivos.y(q)+1)~=1 %se comprueba que el hijo no sea una pared
+%         
+%         %busca si este sucesor est� en la lista de muertos ya.
+%         estaenmuertos=0;
+%         for i=1:length(muertos.x)
+%             if muertos.x(i)==vivos.x(q)+1 && muertos.y(i)==vivos.y(q)+1
+%                 estaenmuertos=1;
+%                 break
+%             end
+%         end
+%         
+%         
+%         if estaenmuertos==0 %%se comprueba que no est� en muertos.
+%             estaenvivos=0;
+%             for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
+%                 if vivos.x(j)==vivos.x(q)+1 && vivos.y(j)==vivos.y(q)+1
+%                     estaenvivos=1;
+%                     if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
+%                         vivos.c(j)=vivos.c(q)+2;
+%                     end
+%                     break
+%                 end
+%                 
+%             end
+%             if estaenvivos==0 %Si no est� en vivos, se mete en vivos
+%                 numvivos=length(vivos.x)+1;
+%                 vivos.x(numvivos)=vivos.x(q)+1;
+%                 vivos.y(numvivos)=vivos.y(q)+1;
+%                 vivos.c(numvivos)=vivos.c(q)+2;
+%                 vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
+%                 vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
+%                 vivos.p(numvivos)=indicepadrerecienmuerto;
+%             end
+%         end
+%         
+%     end
+%     %diagonal inferior izquierda + -
+%     if vivos.x(q)+1<=size(mapa,1) && vivos.y(q)-1>0 && mapa(vivos.x(q)+1,vivos.y(q)-1)~=1 %se comprueba que el hijo no sea una pared
+%         
+%         %busca si este sucesor est� en la lista de muertos ya.
+%         estaenmuertos=0;
+%         for i=1:length(muertos.x)
+%             if muertos.x(i)==vivos.x(q)+1 && muertos.y(i)==vivos.y(q)-1
+%                 estaenmuertos=1;
+%                 break
+%             end
+%         end
+%         
+%         
+%         if estaenmuertos==0 %%se comprueba que no est� en muertos.
+%             estaenvivos=0;
+%             for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
+%                 if vivos.x(j)==vivos.x(q)+1 && vivos.y(j)==vivos.y(q)-1
+%                     estaenvivos=1;
+%                     if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
+%                         vivos.c(j)=vivos.c(q)+2;
+%                     end
+%                     break
+%                 end
+%                 
+%             end
+%             if estaenvivos==0 %Si no est� en vivos, se mete en vivos
+%                 numvivos=length(vivos.x)+1;
+%                 vivos.x(numvivos)=vivos.x(q)+1;
+%                 vivos.y(numvivos)=vivos.y(q)-1;
+%                 vivos.c(numvivos)=vivos.c(q)+2;
+%                 vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
+%                 vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
+%                 vivos.p(numvivos)=indicepadrerecienmuerto;
+%             end
+%         end
+%         
+%     end
+%     
+%     %diagonal superior derecha - +
+%     
+%     if vivos.y(q)+1<=size(mapa,2) && vivos.x(q)-1>0 && mapa(vivos.x(q)-1,vivos.y(q)+1)~=1 %se comprueba que el hijo no sea una pared
+%         
+%         %busca si este sucesor est� en la lista de muertos ya.
+%         estaenmuertos=0;
+%         for i=1:length(muertos.x)
+%             if muertos.x(i)==vivos.x(q)-1 && muertos.y(i)==vivos.y(q)+1
+%                 estaenmuertos=1;
+%                 break
+%             end
+%         end
+%         
+%         
+%         if estaenmuertos==0 %%se comprueba que no est� en muertos.
+%             estaenvivos=0;
+%             for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
+%                 if vivos.x(j)==vivos.x(q)-1 && vivos.y(j)==vivos.y(q)+1
+%                     estaenvivos=1;
+%                     if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
+%                         vivos.c(j)=vivos.c(q)+2;
+%                     end
+%                     break
+%                 end
+%                 
+%             end
+%             if estaenvivos==0 %Si no est� en vivos, se mete en vivos
+%                 numvivos=length(vivos.x)+1;
+%                 vivos.x(numvivos)=vivos.x(q)-1;
+%                 vivos.y(numvivos)=vivos.y(q)+1;
+%                 vivos.c(numvivos)=vivos.c(q)+2;
+%                 vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
+%                 vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
+%                 vivos.p(numvivos)=indicepadrerecienmuerto;
+%             end
+%         end
+%         
+%     end
+%     
+%     %diagonal superior izquierda - -
+%     
+%     if vivos.x(q)-1>0 && vivos.y(q)-1>0 && mapa(vivos.x(q)-1,vivos.y(q)-1)~=1 %se comprueba que el hijo no sea una pared
+%         
+%         %busca si este sucesor est� en la lista de muertos ya.
+%         estaenmuertos=0;
+%         for i=1:length(muertos.x)
+%             if muertos.x(i)==vivos.x(q)-1 && muertos.y(i)==vivos.y(q)-1
+%                 estaenmuertos=1;
+%                 break
+%             end
+%         end
+%         
+%         
+%         if estaenmuertos==0 %%se comprueba que no est� en muertos.
+%             estaenvivos=0;
+%             for j=1:length(vivos.x) %%%%Se comprueba si est� en vivos
+%                 if vivos.x(j)==vivos.x(q)-1 && vivos.y(j)==vivos.y(q)-1
+%                     estaenvivos=1;
+%                     if vivos.c(j)>vivos.c(q)+2%Si est� en vivos, se actualiza su coste
+%                         vivos.c(j)=vivos.c(q)+2;
+%                     end
+%                     break
+%                 end
+%                 
+%             end
+%             if estaenvivos==0 %Si no est� en vivos, se mete en vivos
+%                 numvivos=length(vivos.x)+1;
+%                 vivos.x(numvivos)=vivos.x(q)-1;
+%                 vivos.y(numvivos)=vivos.y(q)-1;
+%                 vivos.c(numvivos)=vivos.c(q)+2;
+%                 vivos.h(numvivos)=heuristica(vivos.x(numvivos),vivos.y(numvivos),filag,columnag);
+%                 vivos.f(numvivos)=vivos.h(numvivos)+vivos.c(numvivos);
+%                 vivos.p(numvivos)=indicepadrerecienmuerto;
+%             end
+%         end
+%         
+%     end
     
     %elimino el padre de la lista de vivos
     vivos.x(q)=[];
@@ -513,5 +513,6 @@ map = [1 1 1
     0 1 0];
 colormap(map)
 caxis([0 9])
+set(gca,'visible','off')
 daspect([1 1 1])
 end
